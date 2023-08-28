@@ -1,6 +1,7 @@
 import { getUsers } from "../Dal/users.js"
 import * as userDal from '../Dal/users.js'
 import bcrypt from 'bcrypt'
+
 export const checkUniqeUser = async (user) => {
     const users = await getUsers();
     const foundUser = users.find(u => u.email === user.email);
@@ -16,7 +17,7 @@ export const getToken = async (user) => {
     });
     if (!foundUser) return null;
     const { email, password } = foundUser
-    return { token: { email, password } };
+    return { email, password };
 }
 
 export const compareUserToken = async (token) => {
@@ -34,7 +35,7 @@ export const addUser = async (user) => {
 export const isAdmin = async (token) => {
     const users = await getUsers();
     const foundUser = users.find((u) => (u.email === token.email && u.password === token.password));
-    return foundUser?.isAdmin;
+    return foundUser?.admin;
 }
 
 export const updateUser = async (user,email) =>{

@@ -4,8 +4,8 @@ import { addUser, checkUniqeUser, compareUserToken, getToken, isAdmin } from "..
 
 export const signUp = async (req, res) => {
     try {
-        const { email, password,isAdmin } = req.body;
-        const user = { email, password,isAdmin };
+        const { email, password, admin } = req.body;
+        const user = { email, password, admin };
         if (await checkUniqeUser(user)) {
             await addUser(user);
             res.status(201).send(user);
