@@ -8,7 +8,7 @@ import morgan from "morgan"
 
 const app = express();
 
-app.use(cors({origin:['https://stellular-chimera-05c398.netlify.app','https://64ec7f6ebf89b70008f13487--stellular-chimera-05c398.netlify.app']}));
+app.use(cors());
 app.use(morgan("combined"));
 app.use(express.json());
 app.use('/products',productsRouter);
